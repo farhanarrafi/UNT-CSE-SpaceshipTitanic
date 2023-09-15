@@ -16,4 +16,23 @@ Here we can find all tasks that "need to be done", and are "currently in progres
 
 https://colab.research.google.com/drive/1l3euQVySNzK60mRTqWrTAGPcUR8ePPlx
 
+## Project Run Instructions:
+1. After downloading code, open a terminal in root folder and run the following code to setup virtual environment:
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+2. Now install flask:
+```
+pip install flask
+```
+3. To run the code, run the following code:
+```
+FLASK_ENV=development flask run
+```
 
+
+
+
+## References:
+1. https://realpython.com/flask-by-example-part-1-project-setup/
