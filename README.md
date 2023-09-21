@@ -36,3 +36,5 @@ FLASK_ENV=development flask run
 
 ## References:
 1. https://realpython.com/flask-by-example-part-1-project-setup/
+2. https://realpython.com/flask-by-example-integrating-flask-and-angularjs/
+3. https://github.com/shea256/angular-flask
