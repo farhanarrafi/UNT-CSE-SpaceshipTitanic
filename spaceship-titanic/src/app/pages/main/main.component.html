@@ -1,71 +1,65 @@
-<h1 align="center"> SYSTEM DATABASE</h1>
+<h1 align="center"> Passenger Mis-transportation Prediction</h1>
 
-
-<form float="center" [formGroup]="passengerData">
-  <tr>
-    <td><label>PassengerId</label></td>
-    <td><input type="text" formControlName="PassengerId"/></td>
-  </tr>
-  <tr>
-    <td><label>HomePlanet</label></td>
-    <td><input type="text" formControlName="HomePlanet"></td>
-  </tr>
-  <tr>
-    <td><label>CryoSleep</label></td>
-    <td><input type="text" formControlName="CryoSleep"></td>
-  </tr>
-  <tr>
-    <td><label>Cabin</label></td>
-    <td><input type="number" formControlName="Cabin"></td>
-  </tr>
-  <tr>
-    <td><label>Destination</label></td>
-    <td><input type="number" formControlName="Destination"></td>
-  </tr>
-  <tr>
-    <td><label>Age</label></td>
-    <td><input type="number" formControlName="Age"></td>
-  </tr>
-  <tr>
-    <td><label>VIP</label></td>
-    <td><input type="number" formControlName="VIP"></td>
-  </tr>
-  <tr>
-    <td><label>Name</label></td>
-    <td><input type="number" formControlName="Name"></td>
-  </tr>
-  <tr>
-    <td><label>Transported</label></td>
-    <td><input type="number" formControlName="Transported"></td>
-  </tr>
-  <tr>
-    <td><label>RoomService</label></td>
-    <td><input type="number" formControlName="RoomService"></td>
-  </tr>
-  <tr>
-    <td><label>FoodCourt</label></td>
-    <td><input type="number" formControlName="FoodCourt"></td>
-  </tr>
-  <tr>
-    <td><label>ShoppingMall</label></td>
-    <td><input type="number" formControlName="ShoppingMall"></td>
-  </tr>
-  <tr>
-    <td><label>Spa</label></td>
-    <td><input type="number" formControlName="Spa"></td>
-  </tr>
-  <tr>
-    <td><label>VRDeck</label></td>
-    <td><input type="number" formControlName="VRDeck"></td>
-  </tr>
-  <tr>
-    <button (click)="submit(passengerData)"> Check </button>
-  </tr>
-</form>
-
-
-
-<!-- <tr>
-  <td></td>
-  <td></td>
-</tr> -->
+    <form float="center" [formGroup]="passengerData">
+      <table>
+      <tr>
+        <td><label>PassengerId</label></td>
+        <td><input type="text" formControlName="PassengerId"/></td>
+      </tr>
+      <tr>
+        <td><label>HomePlanet</label></td>
+        <td><input type="text" formControlName="HomePlanet"></td>
+      </tr>
+      <tr>
+        <td><label>CryoSleep</label></td>
+        <td><input type="text" formControlName="CryoSleep"></td>
+      </tr>
+      <tr>
+        <td><label>Cabin</label></td>
+        <td><input type="text" formControlName="Cabin"></td>
+      </tr>
+      <tr>
+        <td><label>Destination</label></td>
+        <td><input type="text" formControlName="Destination"></td>
+      </tr>
+      <tr>
+        <td><label>Age</label></td>
+        <td><input type="number" formControlName="Age"></td>
+      </tr>
+      <tr>
+        <td><label>VIP</label></td>
+        <td><input type="text" formControlName="VIP"></td>
+      </tr>
+      <tr>
+        <td><label>Name</label></td>
+        <td><input type="text" formControlName="Name"></td>
+      </tr>
+      <tr>
+        <td><label>Transported</label></td>
+        <td><input type="text" formControlName="Transported"></td>
+      </tr>
+      <tr>
+        <td><label>RoomService</label></td>
+        <td><input type="text" formControlName="RoomService"></td>
+      </tr>
+      <tr>
+        <td><label>FoodCourt</label></td>
+        <td><input type="number" formControlName="FoodCourt"></td>
+      </tr>
+      <tr>
+        <td><label>ShoppingMall</label></td>
+        <td><input type="number" formControlName="ShoppingMall"></td>
+      </tr>
+      <tr>
+        <td><label>Spa</label></td>
+        <td><input type="number" formControlName="Spa"></td>
+      </tr>
+      <tr>
+        <td><label>VRDeck</label></td>
+        <td><input type="number" formControlName="VRDeck"></td>
+      </tr>
+      <tr>
+        <button mat-raised-button color="accent" (click)="submit(passengerData)"> Check </button>
+      </tr>
+    </table>
+    </form>
