@@ -1,65 +1,84 @@
-<h1 align="center"> Passenger Mis-transportation Prediction</h1>
+<div class="title flex-container">
+  <h1> Passenger Mis-transportation Prediction</h1>
+</div>
+<form class="data-form" [formGroup]="passengerData">
+      <!-- text -->
+      <mat-form-field class="data-full-width">
+        <mat-label> PassengerId </mat-label>
+        <input matInput formControlName="PassengerId" placeholder="">
+      </mat-form-field>
+      <!-- drop-down -->
+      <mat-form-field class="data-full-width">
+        <mat-label> HomePlanet </mat-label>
+        <select matNativeControl formControlName="HomePlanet">
+          <option value="Earth">Earth</option>
+          <option value="Europa">Europa</option>
+          <option value="Mars">Mars</option>
+        </select>
+      </mat-form-field>
+      <!-- boolean -->
+      <div class="data-full-width custom-checkbox-wrapper">
+        <mat-checkbox formControlName="CryoSleep"></mat-checkbox>
+        <mat-label> CryoSleep </mat-label>
+      </div>
+      <!-- text -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Cabin </mat-label>
+        <input matInput placeholder="" formControlName="Cabin">
+      </mat-form-field>
+      <!-- drop-down -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Destination </mat-label>
+        <select matNativeControl formControlName="Destination">
+          <option value="TRAPPIST-1e">TRAPPIST-1e</option>
+          <option value="55 Cancri e">55 Cancri e</option>
+          <option value="PSO J318.5-22">PSO J318.5-22</option>
+        </select>
+      </mat-form-field>
+      <!-- number -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Age </mat-label>
+        <input matInput placeholder="" formControlName="Age">
+      </mat-form-field>
+      <!-- boolean -->
+      <mat-form-field class="data-full-width">
+        <mat-label> VIP </mat-label>
+        <select matNativeControl formControlName="VIP">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </mat-form-field>
+      <!-- text -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Name </mat-label>
+        <input matInput placeholder="" formControlName="Name">
+      </mat-form-field>
+      <!-- number -->
+      <mat-form-field class="data-full-width">
+        <mat-label> RoomService </mat-label>
+        <input matInput placeholder="" type="number" formControlName="RoomService">
+      </mat-form-field>
+      <!-- number -->
+      <mat-form-field class="data-full-width">
+        <mat-label> FoodCourt </mat-label>
+        <input matInput placeholder="" type="number" formControlName="FoodCourt">
+      </mat-form-field>
+      <!-- number -->
+      <mat-form-field class="data-full-width">
+        <mat-label> ShoppingMall </mat-label>
+        <input matInput placeholder="" type="number" formControlName="ShoppingMall">
+      </mat-form-field>
+      <!-- number -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Spa </mat-label>
+        <input matInput placeholder="" type="number" formControlName="Spa">
+      </mat-form-field>
+      <!-- number -->
+      <mat-form-field class="data-full-width">
+        <mat-label> VRDeck </mat-label>
+        <input matInput placeholder="" type="number" formControlName="VRDeck">
+      </mat-form-field>
 
-    <form float="center" [formGroup]="passengerData">
-      <table>
-      <tr>
-        <td><label>PassengerId</label></td>
-        <td><input type="text" formControlName="PassengerId"/></td>
-      </tr>
-      <tr>
-        <td><label>HomePlanet</label></td>
-        <td><input type="text" formControlName="HomePlanet"></td>
-      </tr>
-      <tr>
-        <td><label>CryoSleep</label></td>
-        <td><input type="text" formControlName="CryoSleep"></td>
-      </tr>
-      <tr>
-        <td><label>Cabin</label></td>
-        <td><input type="text" formControlName="Cabin"></td>
-      </tr>
-      <tr>
-        <td><label>Destination</label></td>
-        <td><input type="text" formControlName="Destination"></td>
-      </tr>
-      <tr>
-        <td><label>Age</label></td>
-        <td><input type="number" formControlName="Age"></td>
-      </tr>
-      <tr>
-        <td><label>VIP</label></td>
-        <td><input type="text" formControlName="VIP"></td>
-      </tr>
-      <tr>
-        <td><label>Name</label></td>
-        <td><input type="text" formControlName="Name"></td>
-      </tr>
-      <tr>
-        <td><label>Transported</label></td>
-        <td><input type="text" formControlName="Transported"></td>
-      </tr>
-      <tr>
-        <td><label>RoomService</label></td>
-        <td><input type="text" formControlName="RoomService"></td>
-      </tr>
-      <tr>
-        <td><label>FoodCourt</label></td>
-        <td><input type="number" formControlName="FoodCourt"></td>
-      </tr>
-      <tr>
-        <td><label>ShoppingMall</label></td>
-        <td><input type="number" formControlName="ShoppingMall"></td>
-      </tr>
-      <tr>
-        <td><label>Spa</label></td>
-        <td><input type="number" formControlName="Spa"></td>
-      </tr>
-      <tr>
-        <td><label>VRDeck</label></td>
-        <td><input type="number" formControlName="VRDeck"></td>
-      </tr>
-      <tr>
-        <button mat-raised-button color="accent" (click)="submit(passengerData)"> Check </button>
-      </tr>
-    </table>
+      <button class="data-full-width" mat-raised-button color="accent" (click)="submit(passengerData)"> Check </button>
+
     </form>

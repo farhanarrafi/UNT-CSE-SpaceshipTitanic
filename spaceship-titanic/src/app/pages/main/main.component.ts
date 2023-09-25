@@ -48,15 +48,14 @@ export class MainComponent {
     console.log(JSON.stringify(this.passengerData.value));
 
     passengerData.reset({
-      PassengerId: '',
+      PassengerId: '', //
       HomePlanet: [],
       CryoSleep: false,
-      Cabin: '',
+      Cabin: '', //
       Destination: [],
       Age: 0,
       VIP: false,
-      Name: '',
-      Transported: false,
+      Name: '', //
       RoomService: 0,
       FoodCourt: 0,
       ShoppingMall: 0,
