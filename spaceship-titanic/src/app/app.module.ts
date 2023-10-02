@@ -13,12 +13,19 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio'
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import { SuccessDialogComponent } from './pages/success-dialog/success-dialog.component';
+import { FailedDialogComponent } from './pages/failed-dialog/failed-dialog.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    SuccessDialogComponent,
+    FailedDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,8 @@ import {MatRadioModule} from '@angular/material/radio'
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

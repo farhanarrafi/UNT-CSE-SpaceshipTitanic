@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Type } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,9 +8,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { Passenger } from '../../models/passenger.model';
+import { response } from '../../models/response.model';
+
 import { PassengerService } from '../../services/passenger.service';
+
+import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
+import { FailedDialogComponent } from '../failed-dialog/failed-dialog.component';
 
 @Component({
   selector: 'app-main',
@@ -37,7 +43,7 @@ export class MainComponent {
     VRDeck: 0
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.passengerData = this.fb.group(this.default_passenger_data)
 
     this.passengerData.valueChanges.subscribe();
@@ -52,6 +58,14 @@ export class MainComponent {
     console.log(JSON.stringify(this.passengerData.value));
 
     // this.get_prediction(this.passengerData.value);
+    var response_dummy = {
+      data: {
+        transported: true,
+        confidence: 80
+      },
+      error: 'none'
+    };
+    this.openDialog(response_dummy, SuccessDialogComponent);
 
     this.reset_form(this.passengerData, this.default_passenger_data);
   }
@@ -69,14 +83,22 @@ export class MainComponent {
 
     if(!response.error){
     if( response?.data["survived"] == true ){
-      // create pop up with survived image and confidence level
+      this.openDialog(response, SuccessDialogComponent);
     } else{
-      // create pop up saying sorry, the passenger is lost
+      this.openDialog(response, FailedDialogComponent);
     }
     }else{
       console.log("Error");
     }
 
+
+  }
+
+  openDialog(data: response, dialog_component: Type<any>): void {
+    const dialogRef = this.dialog.open(dialog_component, {
+      width: '250px',
+      data: data
+    });
 
   }
 

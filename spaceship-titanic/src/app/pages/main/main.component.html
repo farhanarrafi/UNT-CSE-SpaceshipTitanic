@@ -17,10 +17,13 @@
         </select>
       </mat-form-field>
       <!-- boolean -->
-      <div class="data-full-width custom-checkbox-wrapper">
-        <mat-checkbox formControlName="CryoSleep"></mat-checkbox>
+      <mat-form-field class="data-full-width">
         <mat-label> CryoSleep </mat-label>
-      </div>
+        <select matNativeControl formControlName="CryoSleep">
+          <option value=false>No</option>
+          <option value=true>Yes</option>
+        </select>
+      </mat-form-field>
       <!-- text -->
       <mat-form-field class="data-full-width">
         <mat-label> Cabin </mat-label>
@@ -44,8 +47,8 @@
       <mat-form-field class="data-full-width">
         <mat-label> VIP </mat-label>
         <select matNativeControl formControlName="VIP">
-          <option value="No">No</option>
-          <option value="Yes">Yes</option>
+          <option value=false>No</option>
+          <option value=true>Yes</option>
         </select>
       </mat-form-field>
       <!-- text -->
