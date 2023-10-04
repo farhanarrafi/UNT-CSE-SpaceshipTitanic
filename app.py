@@ -70,7 +70,7 @@ def runPCA(testData):
 def run_model(testData):
     dataFrame = getDataFrame(testData)
     dataFrameWithPCA = runPCA(dataFrame)
-    pickel_file = 'trained_model.pkl'
+    pickel_file = 'trained_model.pickle'
     with open(pickel_file, 'rb'):
         pickel_model = pickle.load(pickel_file)
         return pickel_model.predict(dataFrameWithPCA)
