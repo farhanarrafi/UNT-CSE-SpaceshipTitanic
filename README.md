@@ -22,9 +22,9 @@ https://colab.research.google.com/drive/1l3euQVySNzK60mRTqWrTAGPcUR8ePPlx
 python3 -m venv venv
 source venv/bin/activate
 ```
-2. Now install flask:
+2. Now install required modules:
 ```
-pip install flask
+pip install -r requirements.txt
 ```
 3. To run the code, run the following code:
 ```

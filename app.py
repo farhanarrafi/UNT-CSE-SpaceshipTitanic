@@ -5,7 +5,9 @@ import pickle
 import pandas as pd
 from sklearn.decomposition import PCA
 
-app = Flask(__name__)
+app = Flask(
+    __name__
+    )
 #env_config = os.getenv('APP_SETTINGS', 'config.DevelopmentConfig')
 #app.config.from_object(env_config)
 #secret_key = app.config.get('SECRET_KEY')
@@ -28,6 +30,7 @@ Passenger {
 
 @app.get('/')
 def home_get():
+    app.logger.info("call came to home_ get")
     return render_template('index.html')
 
 
@@ -35,6 +38,7 @@ def home_get():
 
 @app.post('/')
 def home_post():
+    app.logger.info("call came to home_post")
     testData = {
         "HomePlanet": request['HomePlanet'],
         "CryoSleep": request['CryoSleep'],
