@@ -32,9 +32,17 @@ FLASK_ENV=development flask run
 ```
 
 
+To update requirements file after lib install, run:
+```python3 -m pip freeze > requirements.txt
+```
+
+## ML Dummy Model Source:
+
+https://www.kaggle.com/code/farhanarrafi/spaceship-titanic-minimum-code-0-7725/edit
 
 
 ## References:
 1. https://realpython.com/flask-by-example-part-1-project-setup/
 2. https://realpython.com/flask-by-example-integrating-flask-and-angularjs/
 3. https://github.com/shea256/angular-flask
+4. [How to save and load your Scikit-learn models in a minute - AnalyticsVidya](https://medium.com/analytics-vidhya/save-and-load-your-scikit-learn-models-in-a-minute-21c91a961e9b)
