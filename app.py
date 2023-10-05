@@ -1,10 +1,13 @@
 import os
 from flask import Flask, render_template, request, send_from_directory
 
+import joblib
+import numpy as np
 import pickle
 import pandas as pd
 from sklearn.decomposition import PCA
 from xgboost import XGBClassifier
+import xgboost
 from sklearn.preprocessing import LabelEncoder
 
 app = Flask(
@@ -32,6 +35,10 @@ Passenger {
 
 @app.get('/')
 def home_get():
+    app.logger.info("call came to home_get request data")
+    app.logger.info(request.form)
+    app.logger.info(request.args)
+    app.logger.info(request.headers)
     app.logger.info("call came to home_ get")
     return render_template('index.html')
 
@@ -41,7 +48,9 @@ def home_get():
 @app.post('/')
 def home_post():
     app.logger.info("call came to home_post request data")
-    app.logger.info(request)
+    app.logger.info(request.form)
+    app.logger.info(request.args)
+    app.logger.info(request.headers)
     deck, num, side = request.form['Cabin'].split('/')
     
     testData = {
@@ -62,12 +71,12 @@ def home_post():
     resultFromModel = run_model(testData)
     app.logger.info("result from model")
     app.logger.info(resultFromModel)
-    return render_template('index.html', response = {})
+    return render_template('index.html', response = {resultFromModel[0]})
 
 def getDataFrame(testData):
     """  int, float, bool or category. """
 
-    label_cols = ["HomePlanet", "CryoSleep","deck","side", "Destination" ,"VIP"]
+    
 
     dataFormat = {
         'HomePlanet': 'category',
@@ -87,17 +96,31 @@ def getDataFrame(testData):
 
     app.logger.info("call came to getDataFrame")
     dataFrame = pd.DataFrame(pd.json_normalize(testData)).astype(dataFormat)
-    dataFrame = runLabelEncoder(dataFrame, label_cols)
-    app.logger.info(" getDataFrame types")
+    app.logger.info(" DataFrame before running LabelEncoder")
+    app.logger.info(dataFrame.head())
+    dataFrame = runLabelEncoder(dataFrame)
+    app.logger.info(" getDataFrame types after running LabelEncoder")
     app.logger.info(dataFrame.dtypes)
+    app.logger.info(" DataFrame after running LabelEncoder")
+    app.logger.info(dataFrame.head())
     return dataFrame
 
 
 
-def runLabelEncoder(dataFrame,columns):
-    for col in columns:
+def runLabelEncoder(dataFrame):
+    """
+    https://stackoverflow.com/a/71463479/3148856
+    https://stackoverflow.com/a/28658869/3148856
+    """
+    label_columns = ["HomePlanet", "CryoSleep","deck","side", "Destination" ,"VIP"]
+    encoderDict = joblib.load('LabelEncoderClasses.joblib')
+    app.logger.info("printing LabelEncoderClasses")
+    app.logger.info(encoderDict)
+    for col in label_columns:
+        encoder = LabelEncoder()
+        encoder.classes_ = encoderDict[col]
         dataFrame[col] = dataFrame[col].astype(str)
-        dataFrame[col] =  LabelEncoder().fit_transform(dataFrame[col])
+        dataFrame[col] = encoder.transform(dataFrame[col])
     return dataFrame
 
 
@@ -108,7 +131,7 @@ def runPCA(testData):
     app.logger.info("printing data in runPCA before fit_transform")
     app.logger.info(data)
     n_components = 2  #number of new columns pca
-    pca = PCA(n_components = n_components)
+    pca = PCA(n_components = n_components, svd_solver = 'auto')
     principal_components = pca.fit_transform(data)
     pc_df = pd.DataFrame(data=principal_components, columns=[f'PC{i+1}' for i in range(n_components)])
     testData["pca_feature_1"]=pc_df['PC1']
@@ -124,16 +147,29 @@ def run_model(testData):
     dataFrame = getDataFrame(testData)
     app.logger.info("printing dataframe returned from getDataFrame")
     app.logger.info(dataFrame.head())
-    dataFrameWithPCA = runPCA(dataFrame)
-    app.logger.info("printing dataframe returned from runPCA")
-    app.logger.info(dataFrame.head())
+    #dataFrame = runPCA(dataFrame)
+    #app.logger.info("printing dataframe returned from runPCA")
+    #app.logger.info(dataFrame.head())
+    dataFrame = dataFrame.reindex(columns=['HomePlanet', 'CryoSleep', 'Destination', 'Age', 'VIP', 'RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck', 'deck', 'num', 'side'])
+
     pickel_file_name = 'model.pickle'
     with open(pickel_file_name, 'rb') as pickle_file:
         pickel_model = pickle.load(pickle_file)
+        setattr(pickel_model, 'verbosity', 3)
         app.logger.info("printing model info")
         app.logger.info(type(pickel_model))
-        dataFrameWithPCA = dataFrameWithPCA.reindex(columns=['HomePlanet', 'CryoSleep', 'Destination', 'Age', 'VIP', 'VRDeck', 'deck', 'num', 'side', 'pca_feature_1', 'pca_feature_2'])
-        return pickel_model.predict(dataFrameWithPCA)
+        return pickel_model.predict(dataFrame)
+
+    # XGBmodel = XGBClassifier({'nthread': 2})
+    # XGBmodel.load_model('XGBModel.model') 
+    # app.logger.info("printing model")
+    # app.logger.info(XGBmodel)
+    # prediction = XGBmodel.predict(dataFrame)
+    # app.logger.info("printing prediction")
+    # app.logger.info(prediction)
+    # return prediction
+    
+    
 
 
 
