@@ -5,7 +5,6 @@ import joblib
 import pickle
 import pandas as pd
 from sklearn.decomposition import PCA
-from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
 
 app = Flask(
@@ -157,19 +156,8 @@ def run_model(testData):
         app.logger.info("confidence score")
         app.logger.info(score)
         return (prediction, score)
-
-    # XGBmodel = XGBClassifier({'nthread': 2})
-    # XGBmodel.load_model('XGBModel.model') 
-    # app.logger.info("printing model")
-    # app.logger.info(XGBmodel)
-    # prediction = XGBmodel.predict(dataFrame)
-    # app.logger.info("printing prediction")
-    # app.logger.info(prediction)
-    # return prediction
     
     
-
-
 
 # special file handlers and error handlers
 @app.route('/favicon.ico')
