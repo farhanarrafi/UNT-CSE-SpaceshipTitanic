@@ -2,12 +2,10 @@ import os
 from flask import Flask, render_template, request, send_from_directory
 
 import joblib
-import numpy as np
 import pickle
 import pandas as pd
 from sklearn.decomposition import PCA
 from xgboost import XGBClassifier
-import xgboost
 from sklearn.preprocessing import LabelEncoder
 
 app = Flask(
@@ -17,29 +15,14 @@ app = Flask(
 #app.config.from_object(env_config)
 #secret_key = app.config.get('SECRET_KEY')
 
-'''
-Passenger {
-  HomePlanet: 'Earth' | 'Europa' | 'Mars';
-  CryoSleep: boolean;
-  Destination: 'TRAPPIST-1e' | '55 Cancri e' | 'PSO J318.5-22';
-  Age: number;
-  VIP: boolean;
-  RoomService: number;
-  FoodCourt: number;
-  ShoppingMall: number;
-  Spa: number;
-  VRDeck: number;
-}
-'''
-
 
 @app.get('/')
 def home_get():
-    app.logger.info("call came to home_get request data")
-    app.logger.info(request.form)
-    app.logger.info(request.args)
-    app.logger.info(request.headers)
-    app.logger.info("call came to home_ get")
+    #app.logger.info("call came to home_get request data")
+    #app.logger.info(request.form)
+    #app.logger.info(request.args)
+    #app.logger.info(request.headers)
+    #app.logger.info("call came to home_ get")
     return render_template('index.html')
 
 
@@ -47,10 +30,10 @@ def home_get():
 
 @app.post('/')
 def home_post():
-    app.logger.info("call came to home_post request data")
-    app.logger.info(request.form)
-    app.logger.info(request.args)
-    app.logger.info(request.headers)
+    #app.logger.info("call came to home_post request data")
+    #app.logger.info(request.form)
+    #app.logger.info(request.args)
+    #app.logger.info(request.headers)
     deck, num, side = request.form['Cabin'].split('/')
     
     testData = {
@@ -68,15 +51,24 @@ def home_post():
         "Spa": request.form['Spa'],
         "VRDeck": request.form['VRDeck'],
     }
-    resultFromModel = run_model(testData)
+    prediction, score = run_model(testData)
+    error = ""
+    transported = "True" if prediction[0] > 0 else "False"
+    confidence = score[0][1] * 100
+    responseJson = {
+        "data" : {
+            "transported": transported,
+            "confidence": confidence,
+        },
+        "error": error
+    }
     app.logger.info("result from model")
-    app.logger.info(resultFromModel)
-    return render_template('index.html', response = {resultFromModel[0]})
+    app.logger.info(responseJson)
+    #return responseJson
+    return render_template('index.html', data = responseJson)
 
 def getDataFrame(testData):
     """  int, float, bool or category. """
-
-    
 
     dataFormat = {
         'HomePlanet': 'category',
@@ -94,15 +86,15 @@ def getDataFrame(testData):
         'VRDeck'   : 'float',
         }
 
-    app.logger.info("call came to getDataFrame")
+    #app.logger.info("call came to getDataFrame")
     dataFrame = pd.DataFrame(pd.json_normalize(testData)).astype(dataFormat)
-    app.logger.info(" DataFrame before running LabelEncoder")
-    app.logger.info(dataFrame.head())
+    #app.logger.info(" DataFrame before running LabelEncoder")
+    #app.logger.info(dataFrame.head())
     dataFrame = runLabelEncoder(dataFrame)
-    app.logger.info(" getDataFrame types after running LabelEncoder")
-    app.logger.info(dataFrame.dtypes)
-    app.logger.info(" DataFrame after running LabelEncoder")
-    app.logger.info(dataFrame.head())
+    #app.logger.info(" getDataFrame types after running LabelEncoder")
+    #app.logger.info(dataFrame.dtypes)
+    #app.logger.info(" DataFrame after running LabelEncoder")
+    #app.logger.info(dataFrame.head())
     return dataFrame
 
 
@@ -114,8 +106,8 @@ def runLabelEncoder(dataFrame):
     """
     label_columns = ["HomePlanet", "CryoSleep","deck","side", "Destination" ,"VIP"]
     encoderDict = joblib.load('LabelEncoderClasses.joblib')
-    app.logger.info("printing LabelEncoderClasses")
-    app.logger.info(encoderDict)
+    #app.logger.info("printing LabelEncoderClasses")
+    #app.logger.info(encoderDict)
     for col in label_columns:
         encoder = LabelEncoder()
         encoder.classes_ = encoderDict[col]
@@ -143,10 +135,10 @@ def run_model(testData):
     """
     https://stackoverflow.com/a/56440689/3148856
     """
-    app.logger.info("call came to run_model")
+    #app.logger.info("call came to run_model")
     dataFrame = getDataFrame(testData)
-    app.logger.info("printing dataframe returned from getDataFrame")
-    app.logger.info(dataFrame.head())
+    #app.logger.info("printing dataframe returned from getDataFrame")
+    #app.logger.info(dataFrame.head())
     #dataFrame = runPCA(dataFrame)
     #app.logger.info("printing dataframe returned from runPCA")
     #app.logger.info(dataFrame.head())
@@ -156,9 +148,15 @@ def run_model(testData):
     with open(pickel_file_name, 'rb') as pickle_file:
         pickel_model = pickle.load(pickle_file)
         setattr(pickel_model, 'verbosity', 3)
-        app.logger.info("printing model info")
-        app.logger.info(type(pickel_model))
-        return pickel_model.predict(dataFrame)
+        #app.logger.info("printing model info")
+        #app.logger.info(type(pickel_model))
+        prediction = pickel_model.predict(dataFrame)
+        app.logger.info("prediction")
+        app.logger.info(prediction)
+        score = pickel_model.predict_proba(dataFrame)
+        app.logger.info("confidence score")
+        app.logger.info(score)
+        return (prediction, score)
 
     # XGBmodel = XGBClassifier({'nthread': 2})
     # XGBmodel.load_model('XGBModel.model') 
