@@ -96,77 +96,105 @@
 	<!-- Custom styles for this template -->
 	<link href="static/form.css" rel="stylesheet">
 </head>
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
-	
-	<main class="form-signin w-100 m-auto">
-		<form action="/" method="post">
-			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-			
-			<div class="form-floating">
-				<input type="text" class="form-control" name="HomePlanet"  id="HomePlanet" placeholder="HomePlanet">
-				<label for="HomePlanet">Home Planet</label>
+<body class="">
+	<main class="" role="main">
+		<section class="jumbotron text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<form action="/" method="post">
+							<h1 class="h3 mb-3 fw-normal">Check Survival Probability</h1>
+							<p class="text-body-secondary">
+								You can check survial rate of any passenger of Spaceship Titanic by providing a few features about the passenger.
+							</p>
+							
+							<div class="form-floating">
+								<input type="text" class="form-control" name="HomePlanet"  id="HomePlanet" placeholder="HomePlanet">
+								<label for="HomePlanet">Home Planet</label>
+							</div>
+							<!-- <div class="form-floating">
+								<input type="text" class="form-control" name="CryoSleep"  id="CryoSleep" placeholder="CryoSleep">
+								<label for="CryoSleep">CryoSleep</label>
+							</div> -->
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="CryoSleep" id="CryoSleepYes" value="true">
+								<label class="form-check-label" for="CryoSleepYes">In CryoSleep</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="CryoSleep" id="CryoSleepNo" value="false">
+								<label class="form-check-label" for="CryoSleepNo">Not in CryoSleep</label>
+							</div>
+							<div class="form-floating">
+								<input type="text" class="form-control" name="Destination"  id="Destination" placeholder="Destination">
+								<label for="Destination">Destination</label>
+							</div>
+							<div class="form-floating">
+								<input type="number" class="form-control" name="Age"  id="Age" placeholder="Age">
+								<label for="Age">Age</label>
+							</div>
+							<!-- <div class="form-floating">
+								<input type="text" class="form-control" name="VIP"  id="VIP" placeholder="VIP">
+								<label for="VIP">VIP</label>
+							</div> -->
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="VIP" id="VIPYes" value="true">
+								<label class="form-check-label" for="VIPYes">Is VIP</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="VIP" id="VIPNo" value="false">
+								<label class="form-check-label" for="VIPNo">Is Not VIP</label>
+							</div>
+							<div class="form-floating">
+								<input type="text" class="form-control" name="Cabin"  id="Cabin" placeholder="Cabin">
+								<label for="Cabin">Cabin (deck/num/side)</label>
+							</div>
+							<div class="form-floating">
+								<input type="number" class="form-control" name="RoomService"  id="RoomService" placeholder="RoomService">
+								<label for="RoomService">Room Service</label>
+							</div>
+							<div class="form-floating">
+								<input type="number" class="form-control" name="FoodCourt"  id="FoodCourt" placeholder="FoodCourt">
+								<label for="FoodCourt">Food Court</label>
+							</div>
+							<div class="form-floating">
+								<input type="number" class="form-control" name="ShoppingMall"  id="ShoppingMall" placeholder="ShoppingMall">
+								<label for="ShoppingMall">Shopping Mall</label>
+							</div>
+							<div class="form-floating">
+								<input type="number" class="form-control" name="Spa"  id="Spa" placeholder="Spa">
+								<label for="Spa">Spa</label>
+							</div>
+							<div class="form-floating">
+								<input type="number" class="form-control" name="VRDeck"  id="VRDeck" placeholder="VRDeck">
+								<label for="VRDeck">VR Deck</label>
+							</div>
+							
+							<button class="btn btn-primary w-100 py-2" type="submit">Check fate</button>
+							<p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+						</form>
+						
+					</div>
+					<div class="col">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top" src="/static/assets/images/spaceship.jpg" alt="Image of Spaceship in the uncharted space">
+							<div class="card-body">
+								<p class="card-text">
+									{% if transported  %}
+											It is {{transported}} that the passenger has been transported to a different dimenion.
+										We are {{confidence}}% confident about it.
+									{% else %}
+									Please provide input to check chance of survival.
+									{% endif %}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!-- <div class="form-floating">
-				<input type="text" class="form-control" name="CryoSleep"  id="CryoSleep" placeholder="CryoSleep">
-				<label for="CryoSleep">CryoSleep</label>
-			</div> -->
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="CryoSleep" id="CryoSleepYes" value="true">
-				<label class="form-check-label" for="CryoSleepYes">In CryoSleep</label>
-			  </div>
-			  <div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="CryoSleep" id="CryoSleepNo" value="false">
-				<label class="form-check-label" for="CryoSleepNo">Not in CryoSleep</label>
-			</div>
-			<div class="form-floating">
-				<input type="text" class="form-control" name="Destination"  id="Destination" placeholder="Destination">
-				<label for="Destination">Destination</label>
-			</div>
-			<div class="form-floating">
-				<input type="number" class="form-control" name="Age"  id="Age" placeholder="Age">
-				<label for="Age">Age</label>
-			</div>
-			<!-- <div class="form-floating">
-				<input type="text" class="form-control" name="VIP"  id="VIP" placeholder="VIP">
-				<label for="VIP">VIP</label>
-			</div> -->
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="VIP" id="VIPYes" value="true">
-				<label class="form-check-label" for="VIPYes">Is VIP</label>
-			  </div>
-			  <div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="VIP" id="VIPNo" value="false">
-				<label class="form-check-label" for="VIPNo">Is Not VIP</label>
-			</div>
-			<div class="form-floating">
-				<input type="text" class="form-control" name="Cabin"  id="Cabin" placeholder="Cabin">
-				<label for="Cabin">Cabin (deck/num/side)</label>
-			</div>
-			<div class="form-floating">
-				<input type="number" class="form-control" name="RoomService"  id="RoomService" placeholder="RoomService">
-				<label for="RoomService">Room Service</label>
-			</div>
-			<div class="form-floating">
-				<input type="number" class="form-control" name="FoodCourt"  id="FoodCourt" placeholder="FoodCourt">
-				<label for="FoodCourt">Food Court</label>
-			</div>
-			<div class="form-floating">
-				<input type="number" class="form-control" name="ShoppingMall"  id="ShoppingMall" placeholder="ShoppingMall">
-				<label for="ShoppingMall">Shopping Mall</label>
-			</div>
-			<div class="form-floating">
-				<input type="number" class="form-control" name="Spa"  id="Spa" placeholder="Spa">
-				<label for="Spa">Spa</label>
-			</div>
-			<div class="form-floating">
-				<input type="number" class="form-control" name="VRDeck"  id="VRDeck" placeholder="VRDeck">
-				<label for="VRDeck">VR Deck</label>
-			</div>
-			
-			<button class="btn btn-primary w-100 py-2" type="submit">Check fate</button>
-			<p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
-		</form>
+		</section>
 	</main>
+	
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 </body>

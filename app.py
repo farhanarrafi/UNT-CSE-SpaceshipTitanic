@@ -53,8 +53,8 @@ def home_post():
     }
     prediction, score = run_model(testData)
     error = ""
-    transported = "True" if prediction[0] > 0 else "False"
-    confidence = score[0][1] * 100
+    transported = True if prediction[0] > 0 else False
+    confidence = round(score[0][1], 4) * 100
     responseJson = {
         "data" : {
             "transported": transported,
@@ -65,7 +65,7 @@ def home_post():
     app.logger.info("result from model")
     app.logger.info(responseJson)
     #return responseJson
-    return render_template('index.html', data = responseJson)
+    return render_template('index.html', transported = transported, confidence=confidence)
 
 def getDataFrame(testData):
     """  int, float, bool or category. """
