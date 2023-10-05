@@ -28,7 +28,7 @@ pip install -r requirements.txt
 ```
 3. To run the code, run the following code:
 ```
-FLASK_ENV=development flask run
+FLASK_ENV=development flask run --debug
 ```
 
 
