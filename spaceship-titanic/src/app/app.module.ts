@@ -19,6 +19,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SuccessDialogComponent } from './pages/success-dialog/success-dialog.component';
 import { FailedDialogComponent } from './pages/failed-dialog/failed-dialog.component';
 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { FailedDialogComponent } from './pages/failed-dialog/failed-dialog.compo
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
