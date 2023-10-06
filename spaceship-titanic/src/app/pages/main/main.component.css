@@ -1,5 +1,6 @@
 body{
   align-items: center;
+  margin: 1rem;
 }
 
 table{
@@ -7,20 +8,10 @@ table{
   margin-right: auto;
 }
 
-.data-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.data-full-width {
-  width: 100%;
-  margin: 1rem;
-}
 
 form{
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .custom-checkbox-wrapper {
@@ -47,4 +38,40 @@ h1{
 
 .title{
   padding: 1rem;
+}
+
+/* Main flex-container for the form */
+.data-form {
+  display: flex;
+  flex-wrap: wrap; /* This allows the items to wrap into the next line */
+  gap: 10px; /* Gap between columns and rows */
+}
+
+/* The full-width class to manage the width of the form elements */
+.data-full-width {
+  flex: 1 1 calc(50% - 10px); /* This makes it take up half the width minus the gap */
+  max-width: calc(50% - 10px);
+}
+
+/* Button styling */
+button.data-full-width {
+  flex: 1 1 100%; /* This makes the button take up the full width */
+  max-width: 100%;
+  margin-top: 20px; /* Add some margin on top for separation */
+}
+
+/* You might want to stack form elements on top of each other for smaller screens */
+@media (max-width: 768px) {
+  .data-full-width {
+      flex: 1 1 100%;
+      max-width: 100%;
+  }
+}
+
+/* Title styling */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
 }

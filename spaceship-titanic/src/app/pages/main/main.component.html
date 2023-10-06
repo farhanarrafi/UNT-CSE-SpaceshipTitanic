@@ -7,6 +7,11 @@
         <mat-label> PassengerId </mat-label>
         <input matInput formControlName="PassengerId" placeholder="">
       </mat-form-field>
+      <!-- text -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Name </mat-label>
+        <input matInput placeholder="" formControlName="Name">
+      </mat-form-field>
       <!-- drop-down -->
       <mat-form-field class="data-full-width">
         <mat-label> HomePlanet </mat-label>
@@ -14,6 +19,15 @@
           <option value="Earth">Earth</option>
           <option value="Europa">Europa</option>
           <option value="Mars">Mars</option>
+        </select>
+      </mat-form-field>
+      <!-- drop-down -->
+      <mat-form-field class="data-full-width">
+        <mat-label> Destination </mat-label>
+        <select matNativeControl formControlName="Destination">
+          <option value="TRAPPIST-1e">TRAPPIST-1e</option>
+          <option value="55 Cancri e">55 Cancri e</option>
+          <option value="PSO J318.5-22">PSO J318.5-22</option>
         </select>
       </mat-form-field>
       <!-- boolean -->
@@ -29,15 +43,6 @@
         <mat-label> Cabin </mat-label>
         <input matInput placeholder="" formControlName="Cabin">
       </mat-form-field>
-      <!-- drop-down -->
-      <mat-form-field class="data-full-width">
-        <mat-label> Destination </mat-label>
-        <select matNativeControl formControlName="Destination">
-          <option value="TRAPPIST-1e">TRAPPIST-1e</option>
-          <option value="55 Cancri e">55 Cancri e</option>
-          <option value="PSO J318.5-22">PSO J318.5-22</option>
-        </select>
-      </mat-form-field>
       <!-- number -->
       <mat-form-field class="data-full-width">
         <mat-label> Age </mat-label>
@@ -50,11 +55,6 @@
           <option value=false>No</option>
           <option value=true>Yes</option>
         </select>
-      </mat-form-field>
-      <!-- text -->
-      <mat-form-field class="data-full-width">
-        <mat-label> Name </mat-label>
-        <input matInput placeholder="" formControlName="Name">
       </mat-form-field>
       <!-- number -->
       <mat-form-field class="data-full-width">
