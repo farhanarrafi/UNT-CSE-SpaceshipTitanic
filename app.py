@@ -33,27 +33,23 @@ def home_post():
     #app.logger.info(request.form)
     #app.logger.info(request.args)
     #app.logger.info(request.headers)
-    deck, num, side = request.form['Cabin'].split('/')
-    
-    testData = {
-        "HomePlanet": request.form['HomePlanet'],
-        "CryoSleep": request.form['CryoSleep'],
-        "Destination": request.form['Destination'],
-        "Age": request.form['Age'],
-        "VIP": request.form['VIP'],
-        "deck": deck,
-        "num": num,
-        "side": side,
-        "RoomService": request.form['RoomService'],
-        "FoodCourt": request.form['FoodCourt'],
-        "ShoppingMall": request.form['ShoppingMall'],
-        "Spa": request.form['Spa'],
-        "VRDeck": request.form['VRDeck'],
-    }
-    prediction, score = run_model(testData)
+    testData = None
     error = ""
-    transported = "True" if prediction[0] > 0 else "False"
-    confidence = score[0][1] * 100
+    transported = None
+    confidence = None
+
+
+    if "Cabin" in request.form:
+        testData, error = parseRequestFormData(request)
+    else:
+        testData, error = parseJSONData(request)
+
+    
+    if error == "":
+        prediction, score = run_model(testData)
+        transported = "True" if prediction[0] > 0 else "False"
+        confidence = score[0][1] * 100
+    
     responseJson = {
         "data" : {
             "transported": transported,
@@ -65,6 +61,61 @@ def home_post():
     app.logger.info(responseJson)
     #return responseJson
     return render_template('index.html', data = responseJson)
+
+def parseJSONData(request):
+    error = ""
+    testData = request.get_json()
+    app.logger.info("parseJSONData")
+    
+
+    testData.pop('PassengerId')
+    testData.pop('Name')
+
+    if "Cabin" in testData:
+        try: 
+            deck, num, side = testData['Cabin'].split('/')
+            testData['deck'] = deck
+            testData['num'] = num
+            testData['side'] = side
+        except:
+            error = "Cabin Data is not formatter properly"
+    else:
+        error = "Cabin Data is not formatted Properly"
+
+    app.logger.info(testData)
+    app.logger.info(type(testData))
+
+    return testData, error
+
+
+def parseRequestFormData(request):
+    error = ""
+    if "Cabin" in request.form:
+        try: 
+            deck, num, side = request.form['Cabin'].split('/')
+            testData = {
+                "HomePlanet": request.form['HomePlanet'],
+                "CryoSleep": request.form['CryoSleep'],
+                "Destination": request.form['Destination'],
+                "Age": request.form['Age'],
+                "VIP": request.form['VIP'],
+                "deck": deck,
+                "num": num,
+                "side": side,
+                "RoomService": request.form['RoomService'],
+                "FoodCourt": request.form['FoodCourt'],
+                "ShoppingMall": request.form['ShoppingMall'],
+                "Spa": request.form['Spa'],
+                "VRDeck": request.form['VRDeck'],
+            }
+        except:
+            error = "Cabin data is not formatted properly"
+    else:
+        error = "Cabin Data is not formatted Properly"
+
+    return testData, error
+
+
 
 def getDataFrame(testData):
     """  int, float, bool or category. """
