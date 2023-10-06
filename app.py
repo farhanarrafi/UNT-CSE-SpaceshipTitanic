@@ -42,7 +42,7 @@ def predict():
     if error == "":
         prediction, score = run_model(testData)
         transported = "True" if prediction[0] > 0 else "False"
-        confidence = score[0][1] * 100
+        confidence = max(score[0][1], score[0][0]) * 100
     
     responseJson = {
         "data" : {
