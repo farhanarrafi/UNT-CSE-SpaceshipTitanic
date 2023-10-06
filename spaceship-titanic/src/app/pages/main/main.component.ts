@@ -86,9 +86,9 @@ export class MainComponent {
       console.log(predict_response);
 
       if(predict_response.error == ''){
-        if(predict_response.data.transported == true){
+        if(predict_response.data.transported == "True"){
           this.openDialog(predict_response, SuccessDialogComponent);
-          }else{
+          }else if(predict_response.data.transported == "False"){
           this.openDialog(predict_response, FailedDialogComponent);
             }
       }
