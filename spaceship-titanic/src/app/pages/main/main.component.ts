@@ -61,16 +61,16 @@ export class MainComponent {
 
     console.log(response);
 
-    var response_dummy = {
-      data: {
-        transported: false,
-        confidence: 75
-      },
-      error: 'none'
-    };
-    this.openDialog(response_dummy, FailedDialogComponent);
+    // var response_dummy = {
+    //   data: {
+    //     transported: false,
+    //     confidence: 75
+    //   },
+    //   error: 'none'
+    // };
+    // this.openDialog(response, FailedDialogComponent);
 
-    this.reset_form(this.passengerData, this.default_passenger_data);
+    // this.reset_form(this.passengerData, this.default_passenger_data);
   }
 
   reset_form(form: FormGroup, data: any){
@@ -81,7 +81,25 @@ export class MainComponent {
 
     console.log(passengerData);
 
-    this.passenger_service.findIfTransported(passengerData).subscribe(() => console.log); // send data
+    this.passenger_service.findIfTransported(passengerData).subscribe((predict_response) => {
+
+      console.log(predict_response);
+
+      if(predict_response.error == ''){
+        if(predict_response.data.transported == true){
+          this.openDialog(predict_response, SuccessDialogComponent);
+          }else{
+          this.openDialog(predict_response, FailedDialogComponent);
+            }
+      }
+      else{
+          console.log(predict_response.error);
+      }
+
+
+    });
+
+    // send data
 
     // if(!get_response.error){
     // if( get_response?.data["transported"] == true ){

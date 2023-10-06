@@ -9,7 +9,7 @@ import { response } from '../models/response.model';
 })
 export class PassengerService {
 
-  private apiUrl = 'https://127.0.0.1';
+  // private apiUrl = 'https://spaceship-titanic-f20313314e4a.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +35,7 @@ export class PassengerService {
     // It'd be in the format of: this.apiUrl?param1=value1&param2=value2...
 
     // If your server expects a POST request:
-    return this.http.post<response>(this.apiUrl, data);
+    return this.http.post<response>('/predict', data);
       // .pipe(
       //   catchError(this.handleError)
       // );
