@@ -25,6 +25,36 @@ def home_get():
     return render_template('index.html')
 
 
+@app.post('/predict')
+def predict():
+    testData = None
+    error = ""
+    transported = None
+    confidence = None
+
+
+    if "Cabin" in request.form:
+        testData, error = parseRequestFormData(request)
+    else:
+        testData, error = parseJSONData(request)
+
+    
+    if error == "":
+        prediction, score = run_model(testData)
+        transported = "True" if prediction[0] > 0 else "False"
+        confidence = score[0][1] * 100
+    
+    responseJson = {
+        "data" : {
+            "transported": transported,
+            "confidence": confidence,
+        },
+        "error": error
+    }
+    app.logger.info("result from model")
+    app.logger.info(responseJson)
+    return responseJson
+
 
 
 @app.post('/')
