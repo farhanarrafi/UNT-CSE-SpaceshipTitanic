@@ -29,8 +29,8 @@ Please check the [DeploymentCode](DeploymentCode) folder for server code and dep
 
 ## Contributors
 
-1. Farhan Ar Rafi - Project Manger + Developer - [![LinkedIn](https://github.com/gauravghongde/social-icons/blob/master/SVG/Color/LinkedIN.svg)](https://www.linkedin.com/in/farhanarrafi/)
-2. Avijeet Shil - Lead + Developer - [![LinkedIn](https://github.com/gauravghongde/social-icons/blob/master/SVG/Color/LinkedIN.svg)](https://www.linkedin.com/in/avijeetshil/)
-3. Naga Sai Sivani Tutika - Developer - [![LinkedIn](https://github.com/gauravghongde/social-icons/blob/master/SVG/Color/LinkedIN.svg)](https://www.linkedin.com/in/sivani-tutika/)
-4. Abdul Azeem Mohammed - Developer - [![LinkedIn](https://github.com/gauravghongde/social-icons/blob/master/SVG/Color/LinkedIN.svg)]([#](https://www.linkedin.com/in/mohammed-abdul-azeem-184084202/))
-5. Mohd Abdul Quavi Latifi - Developer - [![LinkedIn](https://github.com/gauravghongde/social-icons/blob/master/SVG/Color/LinkedIN.svg)](https://www.linkedin.com/in/mohd-abdul-quavi-latifi-046508188/)
+1. Farhan Ar Rafi - Project Manger + Developer - [LinkedIn](https://www.linkedin.com/in/farhanarrafi/)
+2. Avijeet Shil - Lead + Developer - [LinkedIn](https://www.linkedin.com/in/avijeetshil/)
+3. Naga Sai Sivani Tutika - Developer - [LinkedIn](https://www.linkedin.com/in/sivani-tutika/)
+4. Abdul Azeem Mohammed - Developer - [LinkedIn]([#](https://www.linkedin.com/in/mohammed-abdul-azeem-184084202/))
+5. Mohd Abdul Quavi Latifi - Developer - [LinkedIn](https://www.linkedin.com/in/mohd-abdul-quavi-latifi-046508188/)
