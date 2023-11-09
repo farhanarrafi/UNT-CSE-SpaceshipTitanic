@@ -34,3 +34,11 @@ Please check the [DeploymentCode](DeploymentCode) folder for server code and dep
 3. Naga Sai Sivani Tutika - Developer - [LinkedIn](https://www.linkedin.com/in/sivani-tutika/)
 4. Abdul Azeem Mohammed - Developer - [LinkedIn]([#](https://www.linkedin.com/in/mohammed-abdul-azeem-184084202/))
 5. Mohd Abdul Quavi Latifi - Developer - [LinkedIn](https://www.linkedin.com/in/mohd-abdul-quavi-latifi-046508188/)
+
+
+## Acknowledgement
+
+**If I have seen further it is by standing on the shoulders of Giants** - [Issac Newton](https://link.springer.com/chapter/10.1007/978-1-4471-0051-5_5)
+
+1. A lot of code in this project has been taken from projects on Kaggle and elsewhere. We have added the ones we remember. If you want us to acknowledge something, please raise an issue in the project.
+2. Cover Image is taken from Kaggle.
