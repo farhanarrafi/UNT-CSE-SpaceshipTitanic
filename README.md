@@ -6,8 +6,8 @@ The Spaceship Titanic project aims to develop a Machine Learning model to predic
 
 ## Model used in Deployment
 
-| Model |  Model | Accuracy | Precision | Recall | F1-Score |
-| ----- | ------ | -------- | --------- | ------ | -------- |
+|  Model | Accuracy | Precision | Recall | F1-Score |
+| ----- | ------ | -------- | --------- | ------ | 
 | Xgboost | 0.81 | 0.81| 0.81 | 0.81 |
 
 ## Machine Learning code
