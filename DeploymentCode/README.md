@@ -31,9 +31,9 @@ pip install -r requirements.txt
 FLASK_ENV=development flask run --debug
 ```
 
-
 To update requirements file after lib install, run:
-```python3 -m pip freeze > requirements.txt
+```
+python3 -m pip freeze > requirements.txt
 ```
 
 ## ML Dummy Model Source:
